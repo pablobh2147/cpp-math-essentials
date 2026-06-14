@@ -9,6 +9,7 @@
 #pragma once
 
 #include <concepts>
+#include <format>
 #include <limits>
 
 #include "BoundingBox.hpp"
@@ -156,3 +157,32 @@ using RayIntersectiond = RayIntersection<double>;
 #ifdef MATH_ESSENTIALS_NAMESPACE
 }  // namespace NAMESPACE_NAME
 #endif
+
+template <NAMESPACE_NAME::ray_type T>
+struct std::formatter<NAMESPACE_NAME::RayIntersection<T>> {
+    constexpr auto parse(std::format_parse_context& ctx) { return ctx.begin(); }
+
+    auto format(const NAMESPACE_NAME::RayIntersection<T>& intersection, std::format_context& ctx) const {
+        if (!intersection.hit) {
+            return std::format_to(ctx.out(), "RayIntersection(miss)");
+        }
+
+        return std::format_to(
+            ctx.out(),
+            "RayIntersection(distance={}, position={}, normal={}, inside={})",
+            intersection.distance,
+            intersection.position,
+            intersection.normal,
+            intersection.inside  //
+        );
+    }
+};
+
+template <NAMESPACE_NAME::ray_type T>
+struct std::formatter<NAMESPACE_NAME::Ray<T>> {
+    constexpr auto parse(std::format_parse_context& ctx) { return ctx.begin(); }
+
+    auto format(const NAMESPACE_NAME::Ray<T>& ray, std::format_context& ctx) const {
+        return std::format_to(ctx.out(), "Ray(origin={}, direction={})", ray.Origin(), ray.Direction());
+    }
+};
