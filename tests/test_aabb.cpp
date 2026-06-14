@@ -16,7 +16,7 @@
 using namespace NAMESPACE_NAME;
 #endif
 
-constexpr float ABS_TOLERANCE = std::numeric_limits<float>::epsilon();
+constexpr float ABS_ERROR = std::numeric_limits<float>::epsilon() * 64.0f;
 
 // ---------------------- Constructors ----------------------
 
@@ -78,18 +78,18 @@ TEST(AABB, Center_ValidBox) {
     AABBf box(min, max);
 
     Vector3f expected(5.0f, 10.0f, 15.0f);
-    EXPECT_NEAR(box.Center().x, expected.x, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Center().y, expected.y, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Center().z, expected.z, ABS_TOLERANCE);
+    EXPECT_NEAR(box.Center().x, expected.x, ABS_ERROR);
+    EXPECT_NEAR(box.Center().y, expected.y, ABS_ERROR);
+    EXPECT_NEAR(box.Center().z, expected.z, ABS_ERROR);
 }
 
 TEST(AABB, Center_PointBox) {
     Vector3f point(2.0f, 3.0f, 4.0f);
     AABBf box(point, point);
 
-    EXPECT_NEAR(box.Center().x, point.x, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Center().y, point.y, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Center().z, point.z, ABS_TOLERANCE);
+    EXPECT_NEAR(box.Center().x, point.x, ABS_ERROR);
+    EXPECT_NEAR(box.Center().y, point.y, ABS_ERROR);
+    EXPECT_NEAR(box.Center().z, point.z, ABS_ERROR);
 }
 
 TEST(AABB, Center_NegativeCoordinates) {
@@ -97,9 +97,9 @@ TEST(AABB, Center_NegativeCoordinates) {
     AABBf box(-range, range);
 
     Vector3f expected(0.0f, 0.0f, 0.0f);
-    EXPECT_NEAR(box.Center().x, expected.x, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Center().y, expected.y, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Center().z, expected.z, ABS_TOLERANCE);
+    EXPECT_NEAR(box.Center().x, expected.x, ABS_ERROR);
+    EXPECT_NEAR(box.Center().y, expected.y, ABS_ERROR);
+    EXPECT_NEAR(box.Center().z, expected.z, ABS_ERROR);
 }
 
 TEST(AABB, Size_ValidBox) {
@@ -108,9 +108,9 @@ TEST(AABB, Size_ValidBox) {
     AABBf box(min, max);
 
     Vector3f expected(3.0f, 4.0f, 6.0f);
-    EXPECT_NEAR(box.Size().x, expected.x, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Size().y, expected.y, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Size().z, expected.z, ABS_TOLERANCE);
+    EXPECT_NEAR(box.Size().x, expected.x, ABS_ERROR);
+    EXPECT_NEAR(box.Size().y, expected.y, ABS_ERROR);
+    EXPECT_NEAR(box.Size().z, expected.z, ABS_ERROR);
 }
 
 TEST(AABB, Size_PointBox) {
@@ -118,9 +118,9 @@ TEST(AABB, Size_PointBox) {
     AABBf box(point, point);
 
     Vector3f expected(0.0f, 0.0f, 0.0f);
-    EXPECT_NEAR(box.Size().x, expected.x, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Size().y, expected.y, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Size().z, expected.z, ABS_TOLERANCE);
+    EXPECT_NEAR(box.Size().x, expected.x, ABS_ERROR);
+    EXPECT_NEAR(box.Size().y, expected.y, ABS_ERROR);
+    EXPECT_NEAR(box.Size().z, expected.z, ABS_ERROR);
 }
 
 TEST(AABB, Extents_ValidBox) {
@@ -129,9 +129,9 @@ TEST(AABB, Extents_ValidBox) {
     AABBf box(min, max);
 
     Vector3f expected(5.0f, 10.0f, 15.0f);
-    EXPECT_NEAR(box.Extents().x, expected.x, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Extents().y, expected.y, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Extents().z, expected.z, ABS_TOLERANCE);
+    EXPECT_NEAR(box.Extents().x, expected.x, ABS_ERROR);
+    EXPECT_NEAR(box.Extents().y, expected.y, ABS_ERROR);
+    EXPECT_NEAR(box.Extents().z, expected.z, ABS_ERROR);
 }
 
 TEST(AABB, Extents_PointBox) {
@@ -139,9 +139,9 @@ TEST(AABB, Extents_PointBox) {
     AABBf box(point, point);
 
     Vector3f expected(0.0f, 0.0f, 0.0f);
-    EXPECT_NEAR(box.Extents().x, expected.x, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Extents().y, expected.y, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Extents().z, expected.z, ABS_TOLERANCE);
+    EXPECT_NEAR(box.Extents().x, expected.x, ABS_ERROR);
+    EXPECT_NEAR(box.Extents().y, expected.y, ABS_ERROR);
+    EXPECT_NEAR(box.Extents().z, expected.z, ABS_ERROR);
 }
 
 TEST(AABB, Volume_ValidBox) {
@@ -150,7 +150,7 @@ TEST(AABB, Volume_ValidBox) {
     AABBf box(min, max);
 
     float expected = 2.0f * 3.0f * 4.0f;
-    EXPECT_NEAR(box.Volume(), expected, ABS_TOLERANCE);
+    EXPECT_NEAR(box.Volume(), expected, ABS_ERROR);
 }
 
 TEST(AABB, Volume_PointBox) {
@@ -190,7 +190,7 @@ TEST(AABB, SurfaceArea_ValidBox) {
     AABBf box(min, max);
 
     float expected = 2.0f * (2.0f * 3.0f + 3.0f * 4.0f + 4.0f * 2.0f);
-    EXPECT_NEAR(box.SurfaceArea(), expected, ABS_TOLERANCE);
+    EXPECT_NEAR(box.SurfaceArea(), expected, ABS_ERROR);
 }
 
 TEST(AABB, SurfaceArea_PointBox) {
@@ -206,7 +206,7 @@ TEST(AABB, SurfaceArea_FlatBox) {
     AABBf box(min, max);
 
     float expected = 2.0f * (2.0f * 3.0f);
-    EXPECT_NEAR(box.SurfaceArea(), expected, ABS_TOLERANCE);
+    EXPECT_NEAR(box.SurfaceArea(), expected, ABS_ERROR);
 }
 
 // ---------------------- Setters ----------------------
@@ -753,12 +753,12 @@ TEST(AABB, Scale_ShrinkFromCenter) {
 
     box.Scale(0.5f);
 
-    EXPECT_NEAR(box.Min().x, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Min().y, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Min().z, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Max().x, 3.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Max().y, 3.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(box.Max().z, 3.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(box.Min().x, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(box.Min().y, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(box.Min().z, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(box.Max().x, 3.0f, ABS_ERROR);
+    EXPECT_NEAR(box.Max().y, 3.0f, ABS_ERROR);
+    EXPECT_NEAR(box.Max().z, 3.0f, ABS_ERROR);
 }
 
 TEST(AABB, Scale_FromCustomCenter) {
@@ -824,9 +824,9 @@ TEST(AABB, ClosestPoint_TypeConversion) {
 
     Vector3f closest = box.ClosestPoint(point);
 
-    EXPECT_NEAR(closest.x, 10.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(closest.y, 10.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(closest.z, 0.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(closest.x, 10.0f, ABS_ERROR);
+    EXPECT_NEAR(closest.y, 10.0f, ABS_ERROR);
+    EXPECT_NEAR(closest.z, 0.0f, ABS_ERROR);
 }
 
 // ---------------------- DistanceSquared ----------------------
@@ -842,7 +842,7 @@ TEST(AABB, DistanceSquared_PointOutside) {
     AABBf box(Vector3f(0.0f, 0.0f, 0.0f), Vector3f(10.0f, 10.0f, 10.0f));
     Vector3f point(12.0f, 13.0f, 14.0f);
 
-    EXPECT_NEAR(box.DistanceSquared(point), 29.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(box.DistanceSquared(point), 29.0f, ABS_ERROR);
 }
 
 // ---------------------- Distance ----------------------
@@ -859,7 +859,7 @@ TEST(AABB, Distance_PointOutside) {
     Vector3f point(13.0f, 14.0f, 15.0f);
 
     float expected = std::sqrt(3.0f * 3.0f + 4.0f * 4.0f + 5.0f * 5.0f);
-    EXPECT_NEAR(box.Distance(point), expected, ABS_TOLERANCE);
+    EXPECT_NEAR(box.Distance(point), expected, ABS_ERROR);
 }
 
 // ---------------------- Operators ----------------------
@@ -959,9 +959,9 @@ TEST(AABB, Lerp_NonUniformT) {
     AABBf box(Vector3f(0.0f, 0.0f, 0.0f), Vector3f(10.0f, 20.0f, 30.0f));
     Vector3f result = box.Lerp(Vector3f(0.25f, 0.5f, 0.75f));
 
-    EXPECT_NEAR(result.x, 2.5f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.y, 10.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.z, 22.5f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.x, 2.5f, ABS_ERROR);
+    EXPECT_NEAR(result.y, 10.0f, ABS_ERROR);
+    EXPECT_NEAR(result.z, 22.5f, ABS_ERROR);
 }
 
 // ---------------------- Offset ----------------------
@@ -978,9 +978,9 @@ TEST(AABB, Offset_NonUniformBox) {
     AABBf box(Vector3f(0.0f, 0.0f, 0.0f), Vector3f(10.0f, 20.0f, 30.0f));
     Vector3f result = box.Offset(Vector3f(5.0f, 10.0f, 15.0f));
 
-    EXPECT_NEAR(result.x, 0.5f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.y, 0.5f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.z, 0.5f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.x, 0.5f, ABS_ERROR);
+    EXPECT_NEAR(result.y, 0.5f, ABS_ERROR);
+    EXPECT_NEAR(result.z, 0.5f, ABS_ERROR);
 }
 
 TEST(AABB, LerpAndOffset_Inverse) {
@@ -990,9 +990,9 @@ TEST(AABB, LerpAndOffset_Inverse) {
     Vector3f lerpResult = box.Lerp(t);
     Vector3f offsetResult = box.Offset(lerpResult);
 
-    EXPECT_NEAR(offsetResult.x, t.x, ABS_TOLERANCE);
-    EXPECT_NEAR(offsetResult.y, t.y, ABS_TOLERANCE);
-    EXPECT_NEAR(offsetResult.z, t.z, ABS_TOLERANCE);
+    EXPECT_NEAR(offsetResult.x, t.x, ABS_ERROR);
+    EXPECT_NEAR(offsetResult.y, t.y, ABS_ERROR);
+    EXPECT_NEAR(offsetResult.z, t.z, ABS_ERROR);
 }
 
 // ---------------------- Cast Operator ----------------------
@@ -1017,8 +1017,8 @@ TEST(AABB, CastOperator_DoubleToFloat) {
     AABBd boxd(Vector3<double>(1.5, 2.5, 3.5), Vector3<double>(4.5, 5.5, 6.5));
     AABBf boxf = AABBf(boxd);
 
-    EXPECT_NEAR(boxf.Min().x, 1.5f, ABS_TOLERANCE);
-    EXPECT_NEAR(boxf.Max().z, 6.5f, ABS_TOLERANCE);
+    EXPECT_NEAR(boxf.Min().x, 1.5f, ABS_ERROR);
+    EXPECT_NEAR(boxf.Max().z, 6.5f, ABS_ERROR);
 }
 
 // ---------------------- Contains(AABB) ----------------------

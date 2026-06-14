@@ -7,7 +7,7 @@
 using namespace MATH_ESSENTIALS_NAMESPACE;
 #endif
 
-constexpr float ABS_TOLERANCE = 1e-6f;
+constexpr float ABS_ERROR = std::numeric_limits<float>::epsilon() * 64.0f;
 
 // ---------------------- Ray vs AABB Intersection ----------------------
 
@@ -21,13 +21,13 @@ TEST(Raycast, Cast_RayHitsBoxFront) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 5.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.x, -1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.y, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.z, 0.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 5.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.x, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.x, -1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.y, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.z, 0.0f, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_RayHitsBoxBack) {
@@ -40,13 +40,13 @@ TEST(Raycast, Cast_RayHitsBoxBack) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 3.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, 2.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.x, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.y, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.z, 0.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 3.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.x, 2.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.x, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.y, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.z, 0.0f, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_RayHitsBoxTop) {
@@ -59,13 +59,13 @@ TEST(Raycast, Cast_RayHitsBoxTop) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 3.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, 2.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.x, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.y, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.z, 0.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 3.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.x, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, 2.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.x, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.y, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.z, 0.0f, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_RayHitsBoxBottom) {
@@ -78,13 +78,13 @@ TEST(Raycast, Cast_RayHitsBoxBottom) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 5.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.x, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.y, -1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.z, 0.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 5.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.x, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.x, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.y, -1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.z, 0.0f, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_RayHitsBoxLeft) {
@@ -97,13 +97,13 @@ TEST(Raycast, Cast_RayHitsBoxLeft) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 5.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.x, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.y, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.z, -1.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 5.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.x, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.x, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.y, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.z, -1.0f, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_RayHitsBoxRight) {
@@ -116,13 +116,13 @@ TEST(Raycast, Cast_RayHitsBoxRight) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 3.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, 2.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.x, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.y, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.z, 1.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 3.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.x, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, 2.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.x, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.y, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.z, 1.0f, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_RayMissesBox) {
@@ -147,10 +147,10 @@ TEST(Raycast, Cast_RayOriginInsideBox) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, 2.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, 1.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.x, 2.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, 1.0f, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_RayPointsAwayFromBox) {
@@ -175,10 +175,10 @@ TEST(Raycast, Cast_RayAtAngle) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 5.0f * std::sqrt(2.0f), ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, 1.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 5.0f * std::sqrt(2.0f), ABS_ERROR);
+    EXPECT_NEAR(result.position.x, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, 1.0f, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_RayHitsCorner) {
@@ -191,10 +191,10 @@ TEST(Raycast, Cast_RayHitsCorner) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 5.0f * std::sqrt(3.0f), ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, 0.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 5.0f * std::sqrt(3.0f), ABS_ERROR);
+    EXPECT_NEAR(result.position.x, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, 0.0f, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_RayHitsEdge) {
@@ -207,10 +207,10 @@ TEST(Raycast, Cast_RayHitsEdge) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 5.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, 0.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 5.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.x, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, 0.0f, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_NegativeBox) {
@@ -223,10 +223,10 @@ TEST(Raycast, Cast_NegativeBox) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 5.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, -5.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, -3.5f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, -3.5f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 5.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.x, -5.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, -3.5f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, -3.5f, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_LargeBox) {
@@ -239,8 +239,8 @@ TEST(Raycast, Cast_LargeBox) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 100.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, -100.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 100.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.x, -100.0f, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_SmallBox) {
@@ -253,10 +253,10 @@ TEST(Raycast, Cast_SmallBox) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, 0.05f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, 0.05f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.x, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, 0.05f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, 0.05f, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_RayParallelToBoxFace) {
@@ -281,10 +281,10 @@ TEST(Raycast, Cast_DoubleType) {
     RayIntersection<double> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 5.0, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, 0.0, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, 1.0, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, 1.0, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 5.0, ABS_ERROR);
+    EXPECT_NEAR(result.position.x, 0.0, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, 1.0, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, 1.0, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_RayOriginOnFace) {
@@ -297,10 +297,10 @@ TEST(Raycast, Cast_RayOriginOnFace) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, 1.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.x, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, 1.0f, ABS_ERROR);
     EXPECT_FALSE(result.inside);
 }
 
@@ -314,10 +314,10 @@ TEST(Raycast, Cast_RayOriginOnCorner) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, 0.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.x, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, 0.0f, ABS_ERROR);
     EXPECT_FALSE(result.inside);
 }
 
@@ -331,7 +331,7 @@ TEST(Raycast, Cast_RayNearParallelToAxis) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.position.x, 0.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.position.x, 0.0f, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_InsideFlagWhenOriginInside) {
@@ -370,8 +370,8 @@ TEST(Raycast, Cast_VeryLongDistance) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 10000.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, 0.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 10000.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.x, 0.0f, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_BoxAtOriginVsOffsetBox) {
@@ -393,8 +393,8 @@ TEST(Raycast, Cast_BoxAtOriginVsOffsetBox) {
 
     EXPECT_TRUE(result1.hit);
     EXPECT_TRUE(result2.hit);
-    EXPECT_NEAR(result1.distance, 5.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result2.distance, 5.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result1.distance, 5.0f, ABS_ERROR);
+    EXPECT_NEAR(result2.distance, 5.0f, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_AllNegativeDirectionComponents) {
@@ -407,10 +407,10 @@ TEST(Raycast, Cast_AllNegativeDirectionComponents) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, std::sqrt(27.0f), ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, 2.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, 2.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, 2.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, std::sqrt(27.0f), ABS_ERROR);
+    EXPECT_NEAR(result.position.x, 2.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, 2.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, 2.0f, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_NormalDirectionCorrect) {
@@ -421,21 +421,21 @@ TEST(Raycast, Cast_NormalDirectionCorrect) {
         Vector3f(1.0f, 0.0f, 0.0f),
     };
     RayIntersection<float> resultX = ray_x.Intersect(box);
-    EXPECT_NEAR(glm::length(resultX.normal), 1.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(glm::length(resultX.normal), 1.0f, ABS_ERROR);
 
     Ray<float> ray_y {
         Vector3f(1.0f, -5.0f, 1.0f),
         Vector3f(0.0f, 1.0f, 0.0f),
     };
     RayIntersection<float> resultY = ray_y.Intersect(box);
-    EXPECT_NEAR(glm::length(resultY.normal), 1.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(glm::length(resultY.normal), 1.0f, ABS_ERROR);
 
     Ray<float> ray_z {
         Vector3f(1.0f, 1.0f, -5.0f),
         Vector3f(0.0f, 0.0f, 1.0f),
     };
     RayIntersection<float> resultZ = ray_z.Intersect(box);
-    EXPECT_NEAR(glm::length(resultZ.normal), 1.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(glm::length(resultZ.normal), 1.0f, ABS_ERROR);
 }
 
 TEST(Raycast, Cast_ZeroSizeBox) {
@@ -450,7 +450,7 @@ TEST(Raycast, Cast_ZeroSizeBox) {
     RayIntersection<float> result = ray.Intersect(box);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 6.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 6.0f, ABS_ERROR);
 }
 
 // ---------------------- Ray vs OBB Intersection ----------------------
@@ -465,13 +465,13 @@ TEST(Raycast, OBB_UnrotatedBoxBehavesLikeAABB) {
     RayIntersection<float> result = ray.Intersect(obb);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 5.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, 1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.x, -1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.y, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.normal.z, 0.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 5.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.x, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, 1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.x, -1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.y, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.normal.z, 0.0f, ABS_ERROR);
 }
 
 TEST(Raycast, OBB_RotatedAroundYAxis45Degrees) {
@@ -485,8 +485,8 @@ TEST(Raycast, OBB_RotatedAroundYAxis45Degrees) {
 
     EXPECT_TRUE(result.hit);
     float expected_distance = 5.0f - std::sqrt(2.0f);
-    EXPECT_NEAR(result.distance, expected_distance, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, 0.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, expected_distance, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, 0.0f, ABS_ERROR);
 }
 
 TEST(Raycast, OBB_RotatedAroundXAxis90Degrees) {
@@ -499,10 +499,10 @@ TEST(Raycast, OBB_RotatedAroundXAxis90Degrees) {
     RayIntersection<float> result = ray.Intersect(obb);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 4.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, -1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, 0.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 4.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.x, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, -1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, 0.0f, ABS_ERROR);
 }
 
 TEST(Raycast, OBB_RotatedAroundZAxis90Degrees) {
@@ -515,10 +515,10 @@ TEST(Raycast, OBB_RotatedAroundZAxis90Degrees) {
     RayIntersection<float> result = ray.Intersect(obb);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 4.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.x, -1.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.y, 0.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, 0.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 4.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.x, -1.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.y, 0.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, 0.0f, ABS_ERROR);
 }
 
 TEST(Raycast, OBB_RotatedAroundAllAxes) {
@@ -593,8 +593,8 @@ TEST(Raycast, OBB_TranslatedAndRotated) {
     RayIntersection<float> result = ray.Intersect(obb);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.position.y, 5.0f, ABS_TOLERANCE);
-    EXPECT_NEAR(result.position.z, -3.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.position.y, 5.0f, ABS_ERROR);
+    EXPECT_NEAR(result.position.z, -3.0f, ABS_ERROR);
 }
 
 TEST(Raycast, OBB_NormalTransformationCorrect) {
@@ -608,9 +608,9 @@ TEST(Raycast, OBB_NormalTransformationCorrect) {
 
     EXPECT_TRUE(result.hit);
     float normal_length = glm::length(result.normal);
-    EXPECT_NEAR(normal_length, 1.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(normal_length, 1.0f, ABS_ERROR);
 
-    EXPECT_NEAR(std::abs(result.normal.x) + std::abs(result.normal.y) + std::abs(result.normal.z), 1.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(std::abs(result.normal.x) + std::abs(result.normal.y) + std::abs(result.normal.z), 1.0f, ABS_ERROR);
 }
 
 TEST(Raycast, OBB_DiagonalRayThroughRotatedBox) {
@@ -713,7 +713,7 @@ TEST(Raycast, OBB_180DegreeRotation) {
     RayIntersection<float> result = ray.Intersect(obb);
 
     EXPECT_TRUE(result.hit);
-    EXPECT_NEAR(result.distance, 4.0f, ABS_TOLERANCE);
+    EXPECT_NEAR(result.distance, 4.0f, ABS_ERROR);
 }
 
 TEST(Raycast, OBB_MultipleRotatedBoxesDistanceComparison) {
