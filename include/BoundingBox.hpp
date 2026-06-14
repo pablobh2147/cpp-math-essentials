@@ -151,17 +151,6 @@ class AABB {
 
     // ---------------------- Utilities ----------------------
 
-    [[nodiscard]] constexpr bool IsZero() const noexcept {
-        return (
-            m_min.x == 0 && m_min.y == 0 && m_min.z == 0 &&
-            m_max.x == 0 && m_max.y == 0 && m_max.z == 0  //
-        );
-    }
-
-    [[nodiscard]] constexpr bool IsDegenerate() const noexcept {
-        return m_min.x > m_max.x || m_min.y > m_max.y || m_min.z > m_max.z;
-    }
-
     constexpr void Merge(const AABB<T>& other) noexcept {
         m_min = glm::min(m_min, other.m_min);
         m_max = glm::max(m_max, other.m_max);
