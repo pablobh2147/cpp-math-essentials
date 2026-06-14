@@ -1,7 +1,9 @@
 # cpp-math-essentials
 
+[![CI](https://github.com/pablobh2147/cpp-math-essentials/actions/workflows/ci.yml/badge.svg)](https://github.com/pablobh2147/cpp-math-essentials/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![C++20](https://img.shields.io/badge/C%2B%2B-20-blue.svg)](https://en.cppreference.com/w/cpp/20)
+[![Latest Release](https://img.shields.io/github/v/tag/pablobh2147/cpp-math-essentials?label=version&sort=semver)](https://github.com/pablobh2147/cpp-math-essentials/releases)
 
 A lightweight, header-only C++20 math library built on top of [GLM](https://github.com/g-truc/glm). It provides expressive type aliases, bounding-box primitives (AABB & OBB), and ray-intersection utilities — ideal for game engines, physics simulations, and spatial queries.
 
