@@ -507,26 +507,20 @@ using OBBd = OBB<double>;
 }  // namespace NAMESPACE_NAME
 #endif
 
-template <typename T>
-    requires std::is_arithmetic_v<T>
+template <NAMESPACE_NAME::aabb_type T>
 struct std::formatter<NAMESPACE_NAME::AABB<T>> {
-    constexpr auto parse(std::format_parse_context& ctx) {
-        return ctx.begin();
-    }
+    constexpr auto parse(std::format_parse_context& ctx) { return ctx.begin(); }
 
     auto format(const NAMESPACE_NAME::AABB<T>& box, std::format_context& ctx) const {
-        return std::format_to(ctx.out(), "AABB(min: {}, max: {})", box.Min(), box.Max());
+        return std::format_to(ctx.out(), "AABB(min={}, max={})", box.Min(), box.Max());
     }
 };
 
-template <typename T>
-    requires std::is_arithmetic_v<T>
+template <NAMESPACE_NAME::obb_type T>
 struct std::formatter<NAMESPACE_NAME::OBB<T>> {
-    constexpr auto parse(std::format_parse_context& ctx) {
-        return ctx.begin();
-    }
+    constexpr auto parse(std::format_parse_context& ctx) { return ctx.begin(); }
 
     auto format(const NAMESPACE_NAME::OBB<T>& box, std::format_context& ctx) const {
-        return std::format_to(ctx.out(), "OBB(center: {}, extents: {})", box.Center(), box.Extents());
+        return std::format_to(ctx.out(), "OBB(center={}, extents={})", box.Center(), box.Extents());
     }
 };
